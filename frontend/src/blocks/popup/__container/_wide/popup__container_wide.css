@@ -1,0 +1,10 @@
+.popup__container_wide {
+    flex-direction: column;
+    flex-flow: column-reverse;
+    background: rgba(0, 0, 0, 0);
+    box-sizing: content-box;
+    width: min-content;
+    min-height: min-content;
+    gap: 10px;
+    box-shadow: none;
+}

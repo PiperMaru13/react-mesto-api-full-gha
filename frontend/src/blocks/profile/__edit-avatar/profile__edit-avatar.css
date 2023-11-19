@@ -1,0 +1,22 @@
+.profile__edit-avatar {
+  border-style: none;
+  background: rgba(0, 0, 0, 0.8);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 2;
+  position: absolute;
+  padding: 0;
+  transition: visibility 1s, opacity 0.5s ease-out;
+}
+
+@media(max-width: 700px) {
+  .profile__edit-avatar {
+    top: 126px;
+  }
+}
+
+.profile__edit-avatar:hover {
+  opacity: 1;
+}
