@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 84.201.140.56
+IP-адрес 84.252.136.5
 
 Frontend https://pipermarufront.nomoredomainsmonster.ru
 
