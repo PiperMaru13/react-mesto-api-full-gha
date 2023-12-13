@@ -2,13 +2,14 @@ const jwt = require('jsonwebtoken');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 module.exports.auth = (req, res, next) => {
-  const token = req.cookies.jwt;
+  const token = req.headers.authorization;
+  const tokenKey = token.replace('Bearer ', '');
   if (!token) {
     return next(new UnauthorizedError('Ошибка токена!'));
   }
   let payload;
   try {
-    payload = jwt.verify(token, '655567d1682364adfaca9652');
+    payload = jwt.verify(tokenKey, process.env.NODE_ENV === 'production' ? process.env.JWT_SECRET : 'DEV_SECRET');
   } catch (err) {
     return next(new UnauthorizedError('Ошибка токена!'));
   }

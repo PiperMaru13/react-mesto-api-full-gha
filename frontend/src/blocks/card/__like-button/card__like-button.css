@@ -11,8 +11,9 @@
   background-position: center;
   align-self: center;
   cursor: pointer;
+  transition: visibility 1s, opacity 0.5s ease-out;
 }
 
 .card__like-button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }

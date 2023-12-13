@@ -7,4 +7,10 @@
   line-height: 22px;
   height: 22px;
   padding: 0;
+  cursor: pointer;
+  transition: visibility 1s, opacity 0.5s ease-out;
+}
+
+.header__button-logout:hover {
+  opacity: 0.6;
 }

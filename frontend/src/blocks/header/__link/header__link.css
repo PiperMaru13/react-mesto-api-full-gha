@@ -5,4 +5,9 @@
   line-height: 22px;
   text-decoration: none;
   margin-top: 7px;
+  transition: visibility 1s, opacity 0.5s ease-out;
+}
+
+.header__link:hover {
+  opacity: 0.8;
 }

@@ -8,13 +8,13 @@ export default function Header({ onLogout , currentEmail}) {
   return (
     <header className="header">
       <img src={logo} alt="Лого" className="header__logo" />
-      {location.pathname === "/sign-in" && (
-        <Link className="header__link" to="/sign-up">
+      {location.pathname === "/signin" && (
+        <Link className="header__link" to="/signup">
           Регистрация
         </Link>
       )}
-      {location.pathname === "/sign-up" && (
-        <Link className="header__link" to="/sign-in">
+      {location.pathname === "/signup" && (
+        <Link className="header__link" to="/signin">
           Войти
         </Link>
       )}

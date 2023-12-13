@@ -1,4 +1,4 @@
-export const BASE_URL = "https://auth.nomoreparties.co";
+export const BASE_URL = "http://localhost:3001";
 
 export function checkResponse(resp) {
   if (!resp.ok) {
@@ -14,7 +14,7 @@ export const register = (email, password) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ email: email, password: password }),
   }).then(checkResponse);
 };
 
@@ -25,8 +25,14 @@ export const login = (email, password) => {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password }),
-  }).then(checkResponse);
+    body: JSON.stringify({ email: email, password: password }),
+  }).then(checkResponse)
+  .then((data) => {
+    if (data.token) {
+    localStorage.setItem("jwt", data.token)
+    return data;
+    }
+  });
 };
 
 export const checkToken = (jwt) => {

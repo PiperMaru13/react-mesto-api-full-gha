@@ -31,33 +31,30 @@ function App() {
   const [cards, setCards] = useState([]);
   const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      Auth.checkToken(jwt)
+        .then((res) => {
+          setCurrentUser(res.user);
+          navigate("/", { replace: true });
+          setLoggedIn(true);
+        })
+        .catch((err) => { setLoggedIn(false); console.log(err)});
+    }
+  }, []);
 
   useEffect(() => {
     const currentEmail = localStorage.getItem("email");
     currentEmail ? setUserEmail(currentEmail) : setUserEmail("");
     if (isLoggedIn) {
-      Promise.all([api.getProfileInfo(), api.getCards()]).then(([getProfileInfo, cardData]) => {
-        setCurrentUser(getProfileInfo);
+      Promise.all([api.getProfileInfo(), api.getCards()]).then(([profileInfo, cardData]) => {
+        setCurrentUser(profileInfo.user);
         setCards(cardData);
       }).catch(err => console.log(err));
     }
 }, [isLoggedIn]);
-
-  useEffect(() => {
-    handleCheckToken();
-  }, []);
-
-  function handleCheckToken() {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      Auth.checkToken(jwt)
-        .then((res) => {
-          setLoggedIn(true);
-          navigate("/", { replace: true });
-        })
-        .catch((err) => console.log(err));
-    }
-  }
 
   function handleLogin(email, password) {
     Auth.login(email, password)
@@ -65,11 +62,12 @@ function App() {
         localStorage.setItem("email", email);
         localStorage.setItem("password", password);
         localStorage.setItem("jwt", res.token);
-        setLoggedIn(true);
         navigate("/", { replace: true });
+        setLoggedIn(true);
       })
       .catch((err) => {
         console.log(err);
+        setLoggedIn(false);
         setInfoPopupOpen(true);
         setSucceed(false);
       });
@@ -94,12 +92,12 @@ function App() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("email");
     localStorage.removeItem("password");
-    navigate("/sign-in", { replace: true });
+    navigate("/signin", { replace: true });
   }
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     (isLiked ? api.removeLike(card._id) : api.putLike(card._id))
       .then((newCard) => {
@@ -205,15 +203,15 @@ function App() {
               />
             }
           />
-          <Route path="/sign-in" element={<Login onLogin={handleLogin} />} />
+          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
           <Route
-            path="/sign-up"
+            path="/signup"
             element={<Register onRegister={handleRegister} />}
           />
           <Route
             path="*"
             element={
-              isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />
+              isLoggedIn ? <Navigate to="/" /> : <Navigate to="/signin" />
             }
           />
         </Routes>
