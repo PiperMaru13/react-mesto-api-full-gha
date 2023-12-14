@@ -3,8 +3,11 @@ const UnauthorizedError = require('../errors/UnauthorizedError');
 
 module.exports.auth = (req, res, next) => {
   const token = req.headers.authorization;
+  if (!token || !token.startsWith('Bearer ')) {
+    return next(new UnauthorizedError('Ошибка токена!'));
+  }
   const tokenKey = token.replace('Bearer ', '');
-  if (!token) {
+  if (!tokenKey) {
     return next(new UnauthorizedError('Ошибка токена!'));
   }
   let payload;
