@@ -18,8 +18,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "homepage": "https://pipermaru13.github.io/mesto-react"
+    "deploy": "npm run build && scp -r ./build/* pipermaru@84.252.136.5:/home/pipermaru/react-mesto-api-full-gha/frontend"
   },
   "eslintConfig": {
     "extends": [

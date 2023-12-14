@@ -90,7 +90,7 @@ class Api {
 }
 
 const api = new Api({
-    url: "http://localhost:3001",
+    url: "https://pipermaru.nomoredomainsmonster.ru",
 });
 
 export default api;

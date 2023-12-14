@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL = "https://pipermaru.nomoredomainsmonster.ru";
 
 export function checkResponse(resp) {
   if (!resp.ok) {
