@@ -1,8 +1,8 @@
 const allowedCors = [
   'https://localhost:3000',
   'http://localhost:3000',
-  'https://api.pipermaru.nomoredomainsmonster.ru',
-  'http://api.pipermaru.nomoredomainsmonster.ru',
+  'https://pipermaru.nomoredomainsmonster.ru',
+  'http://pipermaru.nomoredomainsmonster.ru',
 ];
 
 module.exports = (req, res, next) => {
