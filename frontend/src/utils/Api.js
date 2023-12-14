@@ -90,7 +90,7 @@ class Api {
 }
 
 const api = new Api({
-    url: "https://pipermaru.nomoredomainsmonster.ru",
+    url: "https://api.pipermaru.nomoredomainsmonster.ru",
 });
 
 export default api;
