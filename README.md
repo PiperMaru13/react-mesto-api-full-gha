@@ -11,6 +11,6 @@
 
 IP 84.252.136.5
 
-Frontend https://pipermarufront.nomoredomainsmonster.ru
+Frontend https://pipermaru.nomoredomainsmonster.ru
 
 Backend https://api.pipermaru.nomoredomainsmonster.ru
